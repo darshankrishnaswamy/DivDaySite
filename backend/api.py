@@ -12,7 +12,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('HELLO WORLD')
 
 app.secret_key = "super secret key"
-
+from flask_cors import CORS, cross_origin
+CORS(app)
 
 @app.route('/data', methods=['GET', 'POST'])
 def data():
@@ -48,7 +49,7 @@ def image():
     # target = os.path.join("Images", 'test_docs')
     # if not os.path.isdir(target):
     #     os.mkdir(target)
-    target = "../public/images"
+    target = "../build/images"
     logger.info("welcome to upload")
     print("Welcome to upload")
     file = request.files['file']

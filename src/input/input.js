@@ -64,7 +64,7 @@ export class Input extends React.Component{
         img.append('file', this.uploadInput.files[0]);
         img.append('filename', this.state.phrase);
 
-        fetch('/image', {
+        fetch('http://127.0.0.1:5000/image', {
             method: 'POST',
             body: img,
         }).then((response) => {
@@ -78,7 +78,7 @@ export class Input extends React.Component{
             }
             console.log("DATA")
             console.log(data)
-            fetch('/data', {
+            fetch('http://127.0.0.1:5000/data', {
                 method: 'POST',
                 body: JSON.stringify({ phrase: data.phrase, image: data.image, paragraph: data.paragraph }),
                 headers: { 'Content-Type': 'application/json',

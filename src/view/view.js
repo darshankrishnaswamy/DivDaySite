@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Navbar} from "../Header/navbar";
 
 
@@ -11,19 +11,19 @@ export class View extends React.Component{
         }
         this.createCard = this.createCard.bind(this);
         this.cardClick = this.createCard.bind(this);
-
-        // fetch('/data', {'Content-Type': 'application/json',
-        //     'Accept': 'application/json'}).then(res => res.json()).then(data => {
-        //     //console.log(data.data);
-        //     let i = -this.state.visible.length + data.data.length;
-        //     for(let j = 0; j < i; j++){
-        //         let {visible} = this.state;
-        //         visible.push(false);
-        //         this.setState({visible: visible})
-        //     }
-        //     this.setState({cards: data.data})
-        // });
-        fetch('/data')
+        //
+        fetch('http://127.0.0.1:5000/data', {'Content-Type': 'application/json',
+            'Accept': 'application/json'}).then(res => res.json()).then(data => {
+            //console.log(data.data);
+            let i = -this.state.visible.length + data.data.length;
+            for(let j = 0; j < i; j++){
+                let {visible} = this.state;
+                visible.push(false);
+                this.setState({visible: visible})
+            }
+            this.setState({cards: data.data})
+        });
+        fetch('http://127.0.0.1:5000/data')
             // .then(res => res.json()) // comment this out for now
             .then(res => res.text())          // convert to plain text
             .then(text => console.log(text))  // then log it out
